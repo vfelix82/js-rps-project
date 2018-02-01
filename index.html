@@ -7,7 +7,7 @@
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="js/jquery-3.2.1.js"></script>
   <script src="js/scripts.js"></script>
-  <audio autoplay>
+  <audio autoplay loop>
     <source src="audio/terminator.mp3" type="audio/mpeg">
     </audio>
   </head>
@@ -17,7 +17,7 @@
     <div class="page1">
       <div class="container">
         <div class="jumbotron jumbotron-fluid" id="jumbo1">
-          <h1 class="display-3">Rock Paper Scissors</h1>
+          <h1 class="display-3">Rock, Paper, BATTLE</h1>
           <h2 class="lead">STREET FIGHTER EDITION</h2>
         </div>
       </div>
@@ -158,7 +158,7 @@
             <div class="caption">
               <h3><span id="playerOneIconName"></span></h3>
               <div class="player1buttons">
-                <a href="#" id="p-one-rock" class="btn btn-primary" role="button">Rock</a><a href="#" id="p-one-paper" class="btn btn-danger" role="button">Paper</a><a href="#" id="p-one-scissors" class="btn btn-primary" role="button">Scissors</a>
+                <a href="#" id="p-one-rock" class="btn btn-primary" role="button">Rock (Q)</a><a href="#" id="p-one-paper" class="btn btn-danger" role="button">Paper (W)</a><a href="#" id="p-one-scissors" class="btn btn-primary" role="button">Scissors (E)</a>
               </div>
             </div>
           </div>
@@ -169,14 +169,20 @@
                 <h3><span id="playerTwoName"> </span> <span id="playerTwoScore"> </span> </h3>
                 <h3 id="tieMessage"></h3>
               </div>
+              <span id="p1checkMark"> </span>
+              <span id="p2checkMark"> </span>
             </div>
+
+          </div>
+          <div id="win-page" class="col-md-4">
+            <span id="win-details"></span>
           </div>
           <div class="col-md-4">
             <span id="player2"></span>
             <div class="caption">
               <h3><span id="playerTwoIconName"></span></h3>
               <div class="player2buttons">
-                <a href="#" id="p-two-rock" class="btn btn-primary" role="button">Rock</a><a href="#" id="p-two-paper" class="btn btn-danger" role="button">Paper</a><a href="#" id="p-two-scissors" class="btn btn-primary" role="button">Scissors</a>
+                <a href="#" id="p-two-rock" class="btn btn-primary" role="button">Rock (I)</a><a href="#" id="p-two-paper" class="btn btn-danger" role="button">Paper (O)</a><a href="#" id="p-two-scissors" class="btn btn-primary" role="button">Scissors (P)</a>
               </div>
 
             </div>
@@ -185,7 +191,8 @@
       </div>
       <br>
       <div class="container">
-        <button type="button" id="replay" class="btn btn-primary btn-lg">Replay</button><button type="button" id="newgame" class="btn btn-primary btn-lg">New Game</button>
+        <button type="button" id="replay" class="btn btn-primary btn-lg">Replay</button>
+        <button type="button" id="newgame" class="btn btn-primary btn-lg">New Game</button>
       </div>
     </div>
   </div>

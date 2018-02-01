@@ -1,4 +1,6 @@
 //BACK E
+var youwinSound = new Audio('audio/youwin.mp3');
+
 function Game(playerOneTurn, playerTwoTurn, scores, playerOne, playerTwo) {
   this.playerOneTurn = playerOneTurn;
   this.playerTwoTurn = playerTwoTurn;
@@ -81,6 +83,8 @@ Game.prototype.getWinner = function() {
     }
     $("#playerOneScore").text(this.scores[0]);
     $("#playerTwoScore").text(this.scores[2]);
+    $("#p1checkMark").html("");
+    $("#p2checkMark").html("");
     this.Victory();
     inputOne = "";
     inputTwo = "";
@@ -91,18 +95,30 @@ var inputTwo = "";
 
 Game.prototype.Victory = function() {
   if (this.scores[0] >= 10) {
-    alert(this.playerOneChar + " " + "WINS!!");
-    $("#replay").click();
+    youwinSound.play();
+    $("#scoreColumn").hide();
+    $("#win-details").html("<h1>The winner is " + this.playerOneChar + "!</h1>");
+    $("#win-page").show();
   }
   else if (this.scores[2] >= 10) {
-    alert(this.playerTwoChar + " " + "WINS!!");
-    $("#replay").click();
+    youwinSound.play();
+    $("#scoreColumn").hide();
+    $("#win-details").html("<h1>The winner is " + this.playerTwoChar + "!</h1>");
+    $("#win-page").show();
   }
 }
 
 //FRONT END LOGIC
 
 $(document).ready(function () {
+  var arnoldSound = new Audio('audio/daddy.wav');
+  var batmanSound = new Audio('audio/batman.wav');
+  var jokerSound = new Audio('audio/joker.mp3');
+  var donaldSound = new Audio('audio/donald.wav');
+  var oprahSound = new Audio('audio/oprah.mp3');
+  var ellenSound = new Audio('audio/ellen.wav');
+  var predatorSound = new Audio('audio/predator.wav');
+  var hillarySound = new Audio('audio/hillary.mp3');
   var newGame = new Game(true, false, [0,0,0], "human", "comp");
   toStart();
 //CHOOSE YOUR FIGHTER CLICK FUNCTION
@@ -111,104 +127,123 @@ $(document).ready(function () {
     var selection = $(this)[0].id;
     console.log(selection);
 
-  //IF PLAYING AGAINST COMPUTER
+//IF PLAYING AGAINST COMPUTER
       if(newGame.playerTwo === "comp") {
+        newGame.playerTwoChar = "Terminator";
+        $("#p-two-rock").hide();
+        $("#p-two-paper").hide();
+        $("#p-two-scissors").hide();
       if (selection === "batman"){
         newGame.playerOneChar = "Batman";
+        batmanSound.play();
         $("#player1").html('<img id="batmanImage" src="http://cdn3.darkhorizons.com/wp-content/uploads/2017/07/reeves-the-batman-will-begin-an-arc.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "joker"){
         newGame.playerOneChar = "Joker";
+        jokerSound.play();
         $("#player1").html('<img id="batmanImage" src="https://vignette.wikia.nocookie.net/batman/images/2/22/The_Joker_smile.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "trump"){
         newGame.playerOneChar = "Trump";
+        donaldSound.play();
         $("#player1").html('<img id="batmanImage" src="https://cdn.cnn.com/cnnnext/dam/assets/161107120239-01-trump-parry-super-169.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "hillary"){
         newGame.playerOneChar = "Hillary";
+        hillarySound.play();
         $("#player1").html('<img id="batmanImage" src="http://c6.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/why-hell-hillary-clinton-comparing-herself-wonder-woman.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "arnold"){
         newGame.playerOneChar = "Arnold";
+        arnoldSound.play();
         $("#player1").html('<img id="batmanImage" src="http://www.dreadcentral.com/wp-content/uploads/2015/07/pred.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "predator"){
         newGame.playerOneChar = "Predator";
+        predatorSound.play();
         $("#player1").html('<img id="batmanImage" src="https://www.sideshowtoy.com/wp-content/uploads/2013/03/350x350-hottoys-Predator.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "oprah"){
         newGame.playerOneChar = "Oprah";
+        oprahSound.play();
         $("#player1").html('<img id="batmanImage" src="https://ewedit.files.wordpress.com/2015/01/oprah_l-24.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
       else if (selection === "ellen"){
         newGame.playerOneChar = "Ellen";
+        ellenSound.play();
         $("#player1").html('<img id="batmanImage" src="http://media.breitbart.com/media/2017/05/EllenDeGeneresTrumpNotWelcome-640x480.jpg" />');
         $("#player2").html('<img id="terminatorImage" src="https://www.sideshowtoy.com/wp-content/uploads/2016/02/terminator-genisys-endoskeleton-sixth-scale-hot-toys-thumb-902662.jpg" />');
         toStage();
       }
     }
-  //IF PLAYING AGAINST PLAYER
+//IF PLAYING AGAINST PLAYER
     else if(newGame.playerTwo === "human" && newGame.playerOneChar === undefined) {
-
       if (selection === "batman"){
         newGame.playerOneChar = "Batman";
+        batmanSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="http://cdn3.darkhorizons.com/wp-content/uploads/2017/07/reeves-the-batman-will-begin-an-arc.jpg" />');
       }
       else if (selection === "joker"){
         newGame.playerOneChar = "Joker";
+        jokerSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="https://vignette.wikia.nocookie.net/batman/images/2/22/The_Joker_smile.jpg" />');
       }
       else if (selection === "trump"){
         newGame.playerOneChar = "Trump";
+        donaldSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="https://cdn.cnn.com/cnnnext/dam/assets/161107120239-01-trump-parry-super-169.jpg" />');
       }
       else if (selection === "hillary"){
         newGame.playerOneChar = "Hillary";
+        hillarySound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="http://c6.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/why-hell-hillary-clinton-comparing-herself-wonder-woman.jpg" />');
       }
       else if (selection === "arnold"){
         newGame.playerOneChar = "Arnold";
+        arnoldSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="http://www.dreadcentral.com/wp-content/uploads/2015/07/pred.jpg" />');
       }
       else if (selection === "predator"){
         newGame.playerOneChar = "Predator";
+        predatorSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="https://www.sideshowtoy.com/wp-content/uploads/2013/03/350x350-hottoys-Predator.jpg" />');
       }
       else if (selection === "oprah"){
         newGame.playerOneChar = "Oprah";
+        oprahSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="https://ewedit.files.wordpress.com/2015/01/oprah_l-24.jpg" />');
       }
       else if (selection === "ellen"){
         newGame.playerOneChar = "Ellen";
+        ellenSound.play();
         newGame.changePlayer();
         newGame.charChoiceDisplay();
         $("#player1").html('<img id="batmanImage" src="http://media.breitbart.com/media/2017/05/EllenDeGeneresTrumpNotWelcome-640x480.jpg" />');
@@ -217,18 +252,21 @@ $(document).ready(function () {
     else if(newGame.playerTwoTurn === true){
       if(selection === "batman") {
         newGame.playerTwoChar = "Batman";
+        batmanSound.play();
         newGame.changePlayer();
         $("#player2").html('<img id="batmanImage" src="http://cdn3.darkhorizons.com/wp-content/uploads/2017/07/reeves-the-batman-will-begin-an-arc.jpg" />');
         toStage();
       }
       else if(selection === "joker") {
         newGame.playerTwoChar = "Joker";
+        jokerSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="https://vignette.wikia.nocookie.net/batman/images/2/22/The_Joker_smile.jpg" />');
         toStage();
       }
       else if(selection === "trump") {
         newGame.playerTwoChar = "Trump";
+        donaldSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="https://cdn.cnn.com/cnnnext/dam/assets/161107120239-01-trump-parry-super-169.jpg" />');
 
@@ -236,30 +274,35 @@ $(document).ready(function () {
       }
       else if(selection === "hillary") {
         newGame.playerTwoChar = "Hillary";
+        hillarySound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="http://c6.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/why-hell-hillary-clinton-comparing-herself-wonder-woman.jpg" />');
         toStage();
       }
       else if(selection === "arnold") {
         newGame.playerTwoChar = "Arnold";
+        arnoldSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="http://www.dreadcentral.com/wp-content/uploads/2015/07/pred.jpg" />');
         toStage();``
       }
       else if(selection === "predator") {
         newGame.playerTwoChar = "Predator";
+        predatorSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="https://www.sideshowtoy.com/wp-content/uploads/2013/03/350x350-hottoys-Predator.jpg" />');
         toStage();
       }
       else if(selection === "oprah") {
         newGame.playerTwoChar = "Oprah";
+        oprahSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="https://ewedit.files.wordpress.com/2015/01/oprah_l-24.jpg" />');
         toStage();
       }
       else if(selection === "ellen") {
         newGame.playerTwoChar = "Ellen";
+        ellenSound.play();
         newGame.changePlayer();
         $("#player2").html('<img src="http://media.breitbart.com/media/2017/05/EllenDeGeneresTrumpNotWelcome-640x480.jpg" />');
         toStage();
@@ -295,9 +338,7 @@ $(document).ready(function () {
       $("body").addClass("arkham");
     }
   });
-
 //PVP OR VS CPU CLICK FUNCTIONS
-
   $("#pvp").click(function () {
     newGame.playerTwo = "human";
     toChars();
@@ -340,6 +381,7 @@ $(document).ready(function () {
   $("#p-one-rock").click(function(event) {
     event.preventDefault();
     $("#tieMessage").text("");
+    $("#p1checkMark").html("&#10003");
     inputOne = "rock";
     if(newGame.playerTwo === "comp") {
       inputTwo = Math.floor(Math.random() * 3 + 1);
@@ -361,6 +403,7 @@ $(document).ready(function () {
     event.preventDefault();
     inputOne = "paper";
     $("#tieMessage").text("");
+    $("#p1checkMark").html("&#10003");
     if(newGame.playerTwo === "comp") {
       inputTwo = Math.floor(Math.random() * 3 + 1);
       if(inputTwo === 1) {
@@ -381,6 +424,7 @@ $(document).ready(function () {
     event.preventDefault();
     inputOne = "scissors";
     $("#tieMessage").text("");
+    $("#p1checkMark").html("&#10003");
     if(newGame.playerTwo === "comp") {
       inputTwo = Math.floor(Math.random() * 3 + 1);
       if(inputTwo === 1) {
@@ -400,29 +444,33 @@ $(document).ready(function () {
   $("#p-two-rock").click(function(event) {
     event.preventDefault();
     inputTwo = "rock";
+    $("#p2checkMark").html("&#10003");
     newGame.getWinner();
   });
   $("#p-two-paper").click(function(event) {
     event.preventDefault();
     inputTwo = "paper";
+    $("#p2checkMark").html("&#10003");
     newGame.getWinner();
   });
   $("#p-two-scissors").click(function(event) {
     event.preventDefault();
     inputTwo = "scissors";
+    $("#p2checkMark").html("&#10003");
     newGame.getWinner();
   });
 
 //REPLAY BUTTON
   $("#replay").click(function () {
     newGame.scores = [0, 0, 0];
+    $("#win-page").hide();
+    $("#scoreColumn").show();
     $("#playerOneScore").text("");
     $("#playerTwoScore").text("");
     $("#tieMessage").text("");
   });
 
 //PAGE 2 BACK BUTTON
-
 $("#p2back").click(function () {
   location.reload();
   });
@@ -430,8 +478,4 @@ $("#p2back").click(function () {
 $("#p3back").click(function () {
   location.reload();
   });
-
-
-
-
 });

@@ -44,6 +44,16 @@ background-image: url("http://sf.co.ua/14/03/wallpaper-828488.jpg");
   background-size: 3500px 2500px;
 }
 
+#p1checkMark {
+  font-size: 50px;
+  color: yellowgreen;
+}
+
+#p2checkMark {
+  float: right;
+  font-size: 50px;
+  color: yellowgreen;
+}
 
 #player2 img{
   width: 350px;
@@ -60,7 +70,8 @@ background-image: url("http://sf.co.ua/14/03/wallpaper-828488.jpg");
 #scoreColumn{
   vertical-align: middle;
   padding-top: 150px;
-  background-color: slategray;
+  background-color: white;
+  opacity: 0.7;
 }
 
 h1 {
@@ -226,6 +237,15 @@ h5  {
   background-position: 25% 75%;
   box-shadow: 0px 0px 15px white;
 
+}
+
+#win-page {
+  display: none;
+  opacity: 1;
+  background-size: 650px 500px;
+  background-image: url("https://i.imgur.com/1wKIxbx.gif");
+  background-repeat: repeat-y;
+  background-position: center;
 }
 
 .btn {
