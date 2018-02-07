@@ -13,7 +13,7 @@ GET READY AND FIGHT!
 
 ## Setup/Installation Requirements
 
-* Direct link: 
+* Direct link: https://vfelix82.github.io/rps-project/
 * Clone from github
 * Open with html
 
